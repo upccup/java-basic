@@ -6,6 +6,7 @@ package com.yaoyun.binarySearch;
  */
 public class SingleNonDuplicate {
 
+    // https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
     public static int singleNonDuplicate(int[] nums) {
         int l = 0, r = nums.length - 1;
         while (l < r) {
