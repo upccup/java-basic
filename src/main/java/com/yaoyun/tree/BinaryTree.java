@@ -49,6 +49,10 @@ public class BinaryTree {
         public T getData() {
             return this.data;
         }
+
+        public void setData(T newData) {
+            this.data = newData;
+        }
     }
 
     private TreeNode root;

@@ -24,9 +24,9 @@ public class MergeBinaryTree {
             return t1;
         }
 
-        TreeNode<Integer> root =  new TreeNode(t1.getKey(), t1.getData() + t2.getData());
-        root.setLeftChild(mergeTwoBinaryTrees(t1.getLeftChild(), t2.getLeftChild()));
-        root.setRightChild(mergeTwoBinaryTrees(t1.getRightChild(), t2.getRightChild()));
-        return root;
+        t1.setData(t1.getData()+t2.getData());
+        t1.setLeftChild(mergeTwoBinaryTrees(t1.getLeftChild(), t2.getLeftChild()));
+        t1.setRightChild(mergeTwoBinaryTrees(t1.getRightChild(), t2.getRightChild()));
+        return t1;
     }
 }
