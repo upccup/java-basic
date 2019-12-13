@@ -10,9 +10,6 @@ public class PathSum {
 
     /**
      * https://leetcode.com/problems/path-sum/
-     * @param node
-     * @param sum
-     * @return
      */
     public static boolean hasPathSum(TreeNode<Integer> node, int sum) {
         if (node == null) {
@@ -28,5 +25,30 @@ public class PathSum {
         }
 
         return hasPathSum(node.getRightChild(), sum - rootData);
+    }
+
+    public static int pathSum(TreeNode<Integer> root, int sum) {
+        if (root == null) {
+            return 0;
+        }
+
+        return subTreePathSum(root, sum)
+            + pathSum(root.getLeftChild(), sum) + pathSum(root.getRightChild(), sum);
+
+    }
+
+    private static int subTreePathSum(TreeNode<Integer> root, int sum) {
+        if (root == null) {
+            return 0;
+        }
+
+        int ret = 0;
+        int rootData = root.getData();
+        if (rootData == sum) {
+            ret++;
+        }
+
+        ret += subTreePathSum(root.getLeftChild(), sum - rootData) + subTreePathSum(root.getRightChild(), sum - rootData);
+        return ret;
     }
 }
