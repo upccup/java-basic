@@ -27,6 +27,12 @@ public class PathSum {
         return hasPathSum(node.getRightChild(), sum - rootData);
     }
 
+    /**
+     * https://leetcode.com/problems/path-sum-iii/
+     * @param root
+     * @param sum
+     * @return
+     */
     public static int pathSum(TreeNode<Integer> root, int sum) {
         if (root == null) {
             return 0;
