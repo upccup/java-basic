@@ -15,16 +15,14 @@ public class MinDepthTest {
     public void minDepth() {
         TreeNode<Integer> root = new TreeNode(1, 1);
         TreeNode<Integer> nodeB = new TreeNode(2, 2);
-        assertEquals(MinDepth.minDepth(root), 2);
-        
-        TreeNode<Integer> nodeC = new TreeNode(3, 2);
         root.setLeftChild(nodeB);
+        TreeNode<Integer> nodeC = new TreeNode(3, 3);
         root.setRightChild(nodeC);
-        TreeNode<Integer> nodeD = new TreeNode(4, 3);
-        TreeNode<Integer> nodeE = new TreeNode(5, 4);
+        TreeNode<Integer> nodeD = new TreeNode(4, 4);
+        TreeNode<Integer> nodeE = new TreeNode(5, 5);
         nodeB.setLeftChild(nodeD);
         nodeB.setRightChild(nodeE);
 
-        assertEquals(MinDepth.minDepth(root), 2);
+        assertEquals(SumOfLeftLeaves.sumOfLeftLeaves(root), 4);
     }
 }
