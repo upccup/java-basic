@@ -1,5 +1,7 @@
 package com.yaoyun.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -273,6 +275,24 @@ public class BinaryTree {
                 if (p.leftChild != null) {
                     stack.push(p.leftChild);
                 }
+            }
+        }
+    }
+
+    public void broadFirstTraverse(TreeNode node) {
+        Queue<TreeNode> treeNodeQueue = new LinkedList<>();
+        treeNodeQueue.add(node);
+
+        while (!treeNodeQueue.isEmpty()) {
+            TreeNode p = treeNodeQueue.poll();
+            this.visited(p);
+
+            if(p.getLeftChild() != null) {
+                treeNodeQueue.add(p.getLeftChild());
+            }
+
+            if(p.getRightChild() != null) {
+                treeNodeQueue.add(p.getRightChild());
             }
         }
     }

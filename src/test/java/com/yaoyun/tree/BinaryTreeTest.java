@@ -63,4 +63,22 @@ public class BinaryTreeTest {
         System.out.println("nonRecPostOrder: ");
         tree.nonRecPostOrder();
     }
+
+    @Test
+    public void broadFirstTraverse() {
+        TreeNode root = new TreeNode(1, "rootNode(A)");
+        BinaryTree tree = new BinaryTree(root);
+        TreeNode nodeB = new TreeNode(2, "B");
+        TreeNode nodeC = new TreeNode(3, "C");
+        root.setLeftChild(nodeB);
+        root.setRightChild(nodeC);
+        TreeNode nodeD = new TreeNode(4, "D");
+        TreeNode nodeE = new TreeNode(5, "E");
+        TreeNode nodeF = new TreeNode(6, "F");
+        nodeB.setLeftChild(nodeD);
+        nodeB.setRightChild(nodeE);
+        nodeC.setRightChild(nodeF);
+        System.out.println("broadFirstTraverse: ");
+        tree.broadFirstTraverse(root);
+    }
 }
