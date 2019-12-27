@@ -1,4 +1,4 @@
-package com.yaoyun.binarySearch;
+package com.yaoyun.binarysearch;
 
 /**
  * @author yaoyun created on 12月 11, 2019

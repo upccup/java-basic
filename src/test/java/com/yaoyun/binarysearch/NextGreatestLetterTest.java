@@ -1,4 +1,4 @@
-package com.yaoyun.binarySearch;
+package com.yaoyun.binarysearch;
 
 import static org.junit.Assert.*;
 
