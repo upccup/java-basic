@@ -4,12 +4,10 @@ import com.yaoyun.tree.BinaryTree.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 /**
  * @author yaoyun created on 12月 27, 2019
- * @version 1.0 若它的左子树不为空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不为空，则右子树上所有结点的值均大于它的根结点的值;
- * 它的左、右子树也分别为二叉查找树
+ * @version 1.0 若它的左子树不为空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不为空，则右子树上所有结点的值均大于它的根结点的值; 它的左、右子树也分别为二叉查找树
  */
 public class BinarySearchTree<T extends Comparable<T>> {
 
@@ -19,6 +17,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
     public BinarySearchTree() {
         this.root = null;
         this.size = 0;
+    }
+
+    public TreeNode<T> getRoot() {
+        return this.root;
     }
 
     public int size() {
@@ -316,27 +318,27 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private void postOrderTraverseNonRecursion(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
-        TreeNode p =  root;
+        TreeNode p = root;
         stack.push(p);
 
-        while (stack.size() >0) {
+        while (stack.size() > 0) {
             p = stack.peek();
-            if(p == null)  {
+            if (p == null) {
                 return;
             }
 
             boolean isLeftChildVisited = (p.getLeftChild() == null || p.getLeftChild().getVisited());
             boolean isRightChildVisited = (p.getRightChild() == null || p.getRightChild().getVisited());
-            if(isLeftChildVisited && isRightChildVisited) {
+            if (isLeftChildVisited && isRightChildVisited) {
                 System.out.println(p.getData());
                 p.setVisited(true);
                 stack.pop();
             } else {
-                if(p.getRightChild() != null) {
+                if (p.getRightChild() != null) {
                     stack.push(p.getRightChild());
                 }
 
-                if(p.getLeftChild() != null) {
+                if (p.getLeftChild() != null) {
                     stack.push(p.getLeftChild());
                 }
             }
@@ -350,11 +352,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
             TreeNode p = queue.poll();
             System.out.println(p.getData());
 
-            if(p.getLeftChild()!=null) {
+            if (p.getLeftChild() != null) {
                 queue.add(p.getLeftChild());
             }
 
-            if(p.getRightChild() != null) {
+            if (p.getRightChild() != null) {
                 queue.add(p.getRightChild());
             }
         }
