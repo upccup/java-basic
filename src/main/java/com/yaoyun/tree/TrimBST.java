@@ -5,6 +5,7 @@ import com.yaoyun.tree.BinaryTree.TreeNode;
 /**
  * @author yaoyun created on 12月 23, 2019
  * @version 1.0
+ * https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
  */
 public class TrimBST {
 
