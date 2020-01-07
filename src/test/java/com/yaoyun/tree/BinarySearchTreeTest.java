@@ -62,4 +62,31 @@ public class BinarySearchTreeTest {
         TreeNode<Integer> p = bst.remove(2);
         assertEquals(new Integer(1), p.getLeftChild().getData());
     }
+
+    @Test
+    public void preOrderTraverse() {
+        BinarySearchTree<Integer> bst = BinarySearchTreeTest.createBST();
+        bst.preOrderTraverse();
+        bst.preOrderTraverseNonRecursion();
+    }
+
+    @Test
+    public void inOrderTraverse() {
+        BinarySearchTree<Integer> bst = BinarySearchTreeTest.createBST();
+        bst.inOrderTraverse();
+        bst.inOrderTraverseNonRecursion();
+    }
+
+    @Test
+    public void postOrderTraverse() {
+        BinarySearchTree<Integer> bst = BinarySearchTreeTest.createBST();
+        bst.postOrderTraverse();
+        bst.postOrderTraverseNonRecursion();
+    }
+
+    @Test
+    public void broadFirstTraverse() {
+        BinarySearchTree<Integer> bst = BinarySearchTreeTest.createBST();
+        bst.broadFirstTraverse();
+    }
 }
