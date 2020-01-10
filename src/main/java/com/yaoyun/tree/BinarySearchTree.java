@@ -7,7 +7,8 @@ import java.util.Stack;
 
 /**
  * @author yaoyun created on 12月 27, 2019
- * @version 1.0 若它的左子树不为空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不为空，则右子树上所有结点的值均大于它的根结点的值; 它的左、右子树也分别为二叉查找树
+ * @version 1.0 若它的左子树不为空，则左子树上所有结点的值均小于它的根结点的值;
+ * 若它的右子树不为空，则右子树上所有结点的值均大于它的根结点的值; 它的左、右子树也分别为二叉查找树
  */
 public class BinarySearchTree<T extends Comparable<T>> {
 
