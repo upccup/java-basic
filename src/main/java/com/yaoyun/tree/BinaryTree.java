@@ -8,15 +8,15 @@ import java.util.Stack;
  * @author yaoyun created on 12月 12, 2019
  * @version 1.0
  */
-public class BinaryTree {
+public class BinaryTree<T> {
 
     public static class TreeNode<T> {
 
         private int key = 0;
         private T data = null;
         private boolean isVisited = false;
-        private TreeNode leftChild = null;
-        private TreeNode rightChild = null;
+        private TreeNode<T> leftChild = null;
+        private TreeNode<T> rightChild = null;
 
         public TreeNode() {
         }
@@ -28,19 +28,19 @@ public class BinaryTree {
             this.rightChild = null;
         }
 
-        public void setLeftChild(TreeNode childNode) {
+        public void setLeftChild(TreeNode<T> childNode) {
             this.leftChild = childNode;
         }
 
-        public TreeNode getLeftChild() {
+        public TreeNode<T> getLeftChild() {
             return this.leftChild;
         }
 
-        public void setRightChild(TreeNode childNode) {
+        public void setRightChild(TreeNode<T> childNode) {
             this.rightChild = childNode;
         }
 
-        public TreeNode getRightChild() {
+        public TreeNode<T> getRightChild() {
             return this.rightChild;
         }
 
@@ -65,9 +65,9 @@ public class BinaryTree {
         }
     }
 
-    private TreeNode root;
+    private TreeNode<T> root;
 
-    public BinaryTree(TreeNode node) {
+    public BinaryTree(TreeNode<T> node) {
         this.root = node;
     }
 
@@ -79,7 +79,7 @@ public class BinaryTree {
         return this.height(root);
     }
 
-    private int height(TreeNode subTree) {
+    private int height(TreeNode<T> subTree) {
         if (subTree == null) {
             return 0;
         }
@@ -91,7 +91,7 @@ public class BinaryTree {
         return this.size(root);
     }
 
-    private int size(TreeNode subTree) {
+    private int size(TreeNode<T> subTree) {
         if (subTree == null) {
             return 0;
         }
@@ -99,7 +99,7 @@ public class BinaryTree {
         return 1 + this.size(subTree.leftChild) + this.size(subTree.rightChild);
     }
 
-    public TreeNode parent(TreeNode element) {
+    public TreeNode<T> parent(TreeNode<T> element) {
         if (root == null || root == element) {
             return null;
         }
@@ -107,7 +107,7 @@ public class BinaryTree {
         return this.parent(root, element);
     }
 
-    public TreeNode parent(TreeNode subTree, TreeNode element) {
+    public TreeNode<T> parent(TreeNode<T> subTree, TreeNode<T> element) {
         if (subTree == null) {
             return null;
         }
@@ -116,7 +116,7 @@ public class BinaryTree {
             return subTree;
         }
 
-        TreeNode p = this.parent(subTree.leftChild, element);
+        TreeNode<T> p = this.parent(subTree.leftChild, element);
         if (p != null) {
             return p;
         }
@@ -124,19 +124,19 @@ public class BinaryTree {
         return this.parent(subTree.rightChild, element);
     }
 
-    public TreeNode getLeftChildNode(TreeNode element) {
+    public TreeNode<T> getLeftChildNode(TreeNode<T> element) {
         return (element == null) ? element.leftChild : null;
     }
 
-    public TreeNode getRightChildNode(TreeNode element) {
+    public TreeNode<T> getRightChildNode(TreeNode<T> element) {
         return (element == null) ? element.rightChild : null;
     }
 
-    public TreeNode getRoot() {
+    public TreeNode<T> getRoot() {
         return this.root;
     }
 
-    public void destroy(TreeNode subTree) {
+    public void destroy(TreeNode<T> subTree) {
         if (subTree != null) {
             this.destroy(subTree.leftChild);
             this.destroy(subTree.rightChild);
@@ -144,14 +144,14 @@ public class BinaryTree {
         }
     }
 
-    public void traverse(TreeNode subTree) {
+    public void traverse(TreeNode<T> subTree) {
         if (subTree != null) {
             this.traverse(subTree.leftChild);
             this.traverse(subTree.rightChild);
         }
     }
 
-    public void visited(TreeNode node) {
+    public void visited(TreeNode<T> node) {
         node.isVisited = true;
         System.out.println("key: " + node.key + "---data: " + node.data);
     }
@@ -163,7 +163,7 @@ public class BinaryTree {
         this.preOrder(root);
     }
 
-    public void preOrder(TreeNode subTree) {
+    public void preOrder(TreeNode<T> subTree) {
         if (subTree != null) {
             this.visited(subTree);
             this.preOrder(subTree.leftChild);
@@ -178,7 +178,7 @@ public class BinaryTree {
         this.inOrder(root);
     }
 
-    public void inOrder(TreeNode subTree) {
+    public void inOrder(TreeNode<T> subTree) {
         if (subTree != null) {
             this.inOrder(subTree.leftChild);
             this.visited(subTree);
@@ -193,7 +193,7 @@ public class BinaryTree {
         this.postOrder(root);
     }
 
-    public void postOrder(TreeNode subTree) {
+    public void postOrder(TreeNode<T> subTree) {
         if (subTree != null) {
             this.postOrder(subTree.leftChild);
             this.postOrder(subTree.rightChild);
@@ -208,9 +208,9 @@ public class BinaryTree {
         this.nonRecPreOrder(this.root);
     }
 
-    public void nonRecPreOrder(TreeNode node) {
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode p = node;
+    public void nonRecPreOrder(TreeNode<T> node) {
+        Stack<TreeNode<T>> stack = new Stack<>();
+        TreeNode<T> p = node;
         while (p != null || stack.size() > 0) {
             while (p != null) {
                 this.visited(p);
@@ -232,9 +232,9 @@ public class BinaryTree {
         this.nonRecInOrder(this.root);
     }
 
-    public void nonRecInOrder(TreeNode node) {
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode p = node;
+    public void nonRecInOrder(TreeNode<T> node) {
+        Stack<TreeNode<T>> stack = new Stack<>();
+        TreeNode<T> p = node;
         while (p != null || stack.size() > 0) {
             while (p != null) {
                 stack.push(p);
@@ -260,9 +260,9 @@ public class BinaryTree {
      * 要保证根结点在左孩子和右孩子访问之后才能访问，因此对于任一结点P，先将其入栈。 如果P不存在左孩子和右孩子，则可以直接访问它； 或者P存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。
      * 若非上述两种情况，则将P的右孩子和左孩子依次入栈，这样就保证了每次取栈顶元素的时候，左孩子在右孩子前面被访问，左孩子和右孩子都在根结点前面被访问
      */
-    public void nonRecPostOrder(TreeNode node) {
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode p = node;
+    public void nonRecPostOrder(TreeNode<T> node) {
+        Stack<TreeNode<T>> stack = new Stack<>();
+        TreeNode<T> p = node;
         stack.push(p);
         while (!stack.isEmpty()) {
             p = stack.peek();
@@ -290,12 +290,12 @@ public class BinaryTree {
     /**
      * 层次遍历(广度优先遍历)
      */
-    public void broadFirstTraverse(TreeNode node) {
-        Queue<TreeNode> treeNodeQueue = new LinkedList<>();
+    public void broadFirstTraverse(TreeNode<T> node) {
+        Queue<TreeNode<T>> treeNodeQueue = new LinkedList<>();
         treeNodeQueue.add(node);
 
         while (!treeNodeQueue.isEmpty()) {
-            TreeNode p = treeNodeQueue.poll();
+            TreeNode<T> p = treeNodeQueue.poll();
             this.visited(p);
 
             if (p.getLeftChild() != null) {
