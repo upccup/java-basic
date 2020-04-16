@@ -29,4 +29,24 @@ public class BasicCalculatorIITest {
         result = BasicCalculatorII.calculator("14/3*2");
         assertEquals(8, result, 0);
     }
+
+    @Test
+    public void calculator2() {
+        int result = BasicCalculatorII.calculator2("3+2*2");
+        assertEquals(7, result, 0);
+        result = BasicCalculatorII.calculator2(" 3/2 ");
+        assertEquals(1, result, 0);
+        result = BasicCalculatorII.calculator2(" 3+5 / 2 ");
+        assertEquals(5, result, 0);
+        result = BasicCalculatorII.calculator2("42");
+        assertEquals(42, result, 0);
+        result = BasicCalculatorII.calculator2("1-1+1");
+        assertEquals(1, result, 0);
+        result = BasicCalculatorII.calculator2("0-2147483647");
+        assertEquals(-2147483647, result, 0);
+        result = BasicCalculatorII.calculator2("1*2-3/4+5*6-7*8+9/10");
+        assertEquals(-24, result, 0);
+        result = BasicCalculatorII.calculator2("14/3*2");
+        assertEquals(8, result, 0);
+    }
 }

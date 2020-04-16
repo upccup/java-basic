@@ -34,20 +34,21 @@ public class BasicCalculatorII {
 
     /**
      * 先乘除
+     *
      * @param strStack 与原始字符串顺序相同的栈(相同优先级的运算符要从左到右运行)
      * @return 乘除计算完后的栈
      */
     private static Stack<String> multiplicationAndDivision(Stack<String> strStack) {
         Stack<String> midStack = new StackList<>();
 
-        for(;!strStack.isEmpty();) {
+        for (; !strStack.isEmpty(); ) {
             String str = strStack.pop();
-            switch (str)  {
+            switch (str) {
                 case "*":
                 case "/":
                     int y = Integer.parseInt(strStack.pop());
                     int x = Integer.parseInt(midStack.pop());
-                    midStack.push(Integer.toString(execute(x,y, str)));
+                    midStack.push(Integer.toString(execute(x, y, str)));
                     break;
                 default:
                     midStack.push(str);
@@ -60,6 +61,7 @@ public class BasicCalculatorII {
 
     /**
      * 先把连续的数字解析出来
+     *
      * @param expression 需要计算的表达式
      * @return 处理完的栈
      */
@@ -86,7 +88,7 @@ public class BasicCalculatorII {
                     for (int j = i + 1; j < strings.length; j++) {
                         String nextStr = strings[j];
                         if ('0' <= nextStr.charAt(0) && nextStr.charAt(0) <= '9') {
-                            currentValue = 10*currentValue + Integer.parseInt(nextStr) ;
+                            currentValue = 10 * currentValue + Integer.parseInt(nextStr);
                             i++;
                         } else {
                             break;
@@ -102,12 +104,13 @@ public class BasicCalculatorII {
 
     /**
      * 翻转一个栈
+     *
      * @param strStack 待处理的栈
      * @return 处理完成的栈
      */
     private static Stack<String> reversalStack(Stack<String> strStack) {
         Stack<String> reversalStack = new StackList<>();
-        for(; !strStack.isEmpty();) {
+        for (; !strStack.isEmpty(); ) {
             reversalStack.push(strStack.pop());
         }
 
@@ -127,5 +130,55 @@ public class BasicCalculatorII {
             default:
                 throw new UnsupportedOperationException();
         }
+    }
+
+
+    /**
+     * 优化版
+     *
+     * @param expression 待计算表达式
+     * @return 计算结果
+     */
+    public static int calculator2(String expression) {
+        char sign = '+';
+        int val = 0;
+        Stack<Integer> valueStack = new StackList<>();
+
+        char[] chars = expression.toCharArray();
+
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            if (Character.isDigit(c)) {
+                val = val * 10 + c - '0';
+            }
+
+            if ((!Character.isDigit(c) && c != ' ') || i == chars.length - 1) {
+                switch (sign) {
+                    case '+':
+                        valueStack.push(val);
+                        break;
+                    case '-':
+                        valueStack.push(-val);
+                        break;
+                    case '*':
+                        valueStack.push(valueStack.pop() * val);
+                        break;
+                    case '/':
+                        valueStack.push(valueStack.pop() / val);
+                        break;
+                    default:
+                        break;
+                }
+                sign = c;
+                val = 0;
+            }
+        }
+
+        int result = 0;
+        for (; !valueStack.isEmpty(); ) {
+            result += valueStack.pop();
+        }
+
+        return result;
     }
 }
