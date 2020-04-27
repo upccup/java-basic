@@ -45,4 +45,42 @@ public class QuickSort {
 
         return nums;
     }
+
+
+    public static int[] quickSort2(int[] nums) {
+        return sort2(nums, 0, nums.length - 1);
+    }
+
+    private static int[] sort2(int[] arr, int left, int right) {
+        if (left < right) {
+            int partitionIndex = partition(arr, left, right);
+            sort2(arr, left, partitionIndex - 1);
+            sort2(arr, partitionIndex + 1, right);
+        }
+
+        return arr;
+    }
+
+    private static int partition(int[] arr, int left, int right) {
+        // 设置基准值(pivot)
+        // int pivot = left;
+        int index = left + 1;
+
+        for (int i = index; i <= right; i++) {
+            if (arr[i] < arr[left]) {
+                swap(arr, i, index);
+                index++;
+            }
+        }
+
+        swap(arr, left, index - 1);
+        return index - 1;
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
 }
