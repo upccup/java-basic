@@ -68,19 +68,12 @@ public class QuickSort {
 
         for (int i = index; i <= right; i++) {
             if (arr[i] < arr[left]) {
-                swap(arr, i, index);
+                Utils.swap(arr, i, index);
                 index++;
             }
         }
 
-        swap(arr, left, index - 1);
+        Utils.swap(arr, left, index - 1);
         return index - 1;
     }
-
-    private static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
 }
